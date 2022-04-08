@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import ViewAllRequirements from './pages/ViewAllRequirements';
+import AddRequirement  from './pages/AddRequirement';
+import EditRequirement from './pages/EditRequirement';
+import SiderBar from './pages/SiderBar';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SiderBar/>
+      <Routes>
+        <Route exact path="/Requirements" element ={<ViewAllRequirements/>} />
+        <Route exact path="/addrequirement" element ={<AddRequirement/>} />
+        <Route exact path="/editrequirement/:id" element ={<EditRequirement/>} />
+      </Routes>
     </div>
   );
 }
