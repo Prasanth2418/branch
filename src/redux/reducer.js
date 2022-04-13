@@ -2,30 +2,30 @@ import * as types from "./actionType";
 
 //defining initial state of application
 const initialState = {
-  users: [],
+Requirements: [],
   Requirement: {},
   loading: false,
 };
 
 const requirementReducers = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_USERS:
-    case types.FILTER_USER:
-    case types.SORT_USER:
+    case types.GET_REQUIREMENTS:
+    case types.FILTER_REQUIREMENT:
+    case types.SORT_REQUIREMENT:
      
       return {
         ...state,
-        users: action.payload,
+        Requirements: action.payload,
         loading: false,
       };
     // case types.DELETE_USER:
-    case types.ADD_USER:
-    case types.UPDATE_USER:
+    case types.ADD_REQUIREMENT:
+    case types.UPDATE_REQUIREMENT:
       return {
         ...state,
         loading: false,
       };
-    case types.GET_SINGLE_USER:
+    case types.GET_SINGLE_REQUIREMENT:
       return {
         ...state,
         user: action.payload,

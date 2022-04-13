@@ -6,11 +6,11 @@ import DynamicFeedOutlinedIcon from '@mui/icons-material/DynamicFeedOutlined';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import EqualizerOutlinedIcon from '@mui/icons-material/EqualizerOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import Crop32OutlinedIcon from '@mui/icons-material/Crop32Outlined';
 import DoneAllOutlinedIcon from '@mui/icons-material/DoneAllOutlined';
-import { Divider,Box,List,ListItem,ListItemText,ListItemButton,ListItemIcon } from '@mui/material';
+import { Box,List,ListItem,ListItemText,ListItemButton,ListItemIcon } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 
 
 
@@ -35,9 +35,9 @@ const SiderBar = () => {
                 </ListItemText>
             </ListItemButton>
           </ListItem></List>
-          <Divider/>
+      
      
-        <List sx={{paddingTop:7}}>
+        <List sx={{marginTop:5}}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -91,7 +91,7 @@ const SiderBar = () => {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <Crop32OutlinedIcon/>
+                <AddCardOutlinedIcon/>
               </ListItemIcon>
               <ListItemText primary="Subscriptions" onClick={()=>Navigate("/")} />
             </ListItemButton>

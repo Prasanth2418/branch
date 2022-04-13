@@ -2,47 +2,49 @@
 import axios from "axios";
 import * as types from "./actionType";
 
-const getUsers = (users) => ({
-    type: types.GET_USERS,
-    payload: users,
+const getRequirements = (Requirements) => ({
+    type: types.GET_REQUIREMENTS,
+    payload: Requirements,
 });
 
 // const userDeleted = (users) => ({
 //     type: types.DELETE_USER,
 //     payload: users,
 // })
-const userAdded = (users) => ({
-    type: types.ADD_USER,
+const requirementAdded = () => ({
+    type: types.ADD_REQUIREMENT,
     
 })
-const userUpdated = (user) => ({
-    type: types.UPDATE_USER,
+const requirementUpdated = () => ({
+    type: types.UPDATE_REQUIREMENT,
     
 })
 const filter = (Status) => ({
-    type: types.FILTER_USER,
+    type: types.FILTER_REQUIREMENT,
     payload:Status,
     
 })
-const sort = (users) => ({
-    type: types.SORT_USER,
-    payload:users,
+const sort = (Requirements) => ({
+    type: types.SORT_REQUIREMENT,
+    payload:Requirements,
     
 })
 
 
-const getUser = (user) => ({
-    type: types.GET_SINGLE_USER,
-    payload:user,
+
+const getRequirement = (Requirement) => ({
+    type: types.GET_SINGLE_REQUIREMENT,
+    payload:Requirement,
     
 })
 
 
-export const loadUsers = (start,end) => {
+
+export const loadRequirements = (start,end) => {
     return function (dispatch) {
-        axios.get(`${process.env.REACT_APP_API}?_start=0&_end=4`).then((resp) => {
+        axios.get(`${process.env.REACT_APP_API_Requirements}`).then((resp) => {
             console.log("resp", resp)
-            dispatch(getUsers(resp.data));
+            dispatch(getRequirements(resp.data));
           
         })
         .catch((error) => console.log(error));
@@ -60,40 +62,40 @@ export const loadUsers = (start,end) => {
 //         .catch((error) => console.log(error));
 //     };
 
-export const addUser = (user) => {
+export const addRequirement = (user) => {
     return function (dispatch) {
-        axios.post(`${process.env.REACT_APP_API}`,user).then((resp) => {
+        axios.post(`${process.env.REACT_APP_API_Requirements}`,user).then((resp) => {
             console.log("resp", resp)
-            dispatch(userAdded());
-            dispatch(loadUsers());
+            dispatch(requirementAdded());
+            dispatch(loadRequirements());
         })
         .catch((error) => console.log(error));
     };
 };
-export const getSingleUser = (id) => {
+export const getSingleRequirement = (id) => {
     return function (dispatch) {
-        axios.get(`${process.env.REACT_APP_API}/${id}`).then((resp) => {
+        axios.get(`${process.env.REACT_APP_API_Requirements}/${id}`).then((resp) => {
             console.log("resp", resp)
-            dispatch(getUser(resp.data));
+            dispatch(getRequirement(resp.data));
           
         })
         .catch((error) => console.log(error));
     };
 };
-export const updateUser = (user,id) => {
+export const updateRequirement = (user,id) => {
     return function (dispatch) {
-        axios.put(`${process.env.REACT_APP_API}/${id}`,user).then((resp) => {
+        axios.put(`${process.env.REACT_APP_API_Requirements}/${id}`,user).then((resp) => {
             console.log("resp", resp)
-            dispatch(userUpdated());
-            dispatch(loadUsers());
+            dispatch(requirementUpdated());
+            dispatch(loadRequirements());
           
         })
         .catch((error) => console.log(error));
     };
 };
-export const filterUser = (Status) => {
+export const filterRequirement = (Status) => {
     return function (dispatch) {
-        axios.get(`${process.env.REACT_APP_API}?Status=${Status}`).then((resp) => {
+        axios.get(`${process.env.REACT_APP_API_Requirements}?status=${Status}`).then((resp) => {
             console.log("resp", resp)
             dispatch(filter(resp.data));
           
@@ -101,9 +103,9 @@ export const filterUser = (Status) => {
         .catch((error) => console.log(error));
     };
 };
-export const sortUser = (user) => {
+export const sortRequirement = (user) => {
     return function (dispatch) {
-        axios.get(`${process.env.REACT_APP_API}?_sort=${user}&_order=asc`).then((resp) => {
+        axios.get(`${process.env.REACT_APP_API_Requirements}?_sort=${user}&_order=asc`).then((resp) => {
             console.log("resp", resp)
             dispatch(sort(resp.data));
           
@@ -111,4 +113,5 @@ export const sortUser = (user) => {
         .catch((error) => console.log(error));
     };
 }
+
 

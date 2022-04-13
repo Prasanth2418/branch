@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { styled,Table,TableBody,TableContainer,TableCell,tableCellClasses,TableHead,TableRow,Paper,Button,Stack, Container,Grid,Typography,IconButton,InputBase,TableSortLabel } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import {  loadUsers, sortUser } from "../redux/actions";
+import {  loadRequirements, sortRequirement} from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import SearchIcon from '@mui/icons-material/Search';
@@ -36,9 +36,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const Home = () => {
   let dispatch = useDispatch();
   let navigate= useNavigate();
-  const { users } = useSelector((state) => state.data);
+  const { Requirements } = useSelector((state) => state.requirement);
   useEffect(() => {
-    dispatch(loadUsers(0,4,0));
+    dispatch(loadRequirements(0,4,0));
   },[]);
 
   // const handleDelete = (id) => {
@@ -49,7 +49,7 @@ const Home = () => {
  
   const [search,setSearch]=useState("")
   const handleSort =(value) =>{
-    dispatch(sortUser(value))
+    dispatch(sortRequirement(value))
   }
   return (
      <Container>
@@ -72,8 +72,13 @@ const Home = () => {
       
       </div>
       <br/>
-       {<Filter/>}
-      <Paper
+    
+      {<Filter/>}
+      
+     
+    
+      
+<Paper
       component="form"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'right', width: 350,border:1,float:"right"}}
     >
@@ -98,7 +103,7 @@ const Home = () => {
              <TableSortLabel 
              direction='desc'
              active={true}
-             onClick={()=>handleSort("name")}> <StyledTableCell >Requirements</StyledTableCell></TableSortLabel>
+             onClick={()=>handleSort("title")}> <StyledTableCell >Requirements</StyledTableCell></TableSortLabel>
               <StyledTableCell align="center" >Total positions</StyledTableCell>
               <StyledTableCell align="center">Positions closed</StyledTableCell>
               <StyledTableCell align="center">Status</StyledTableCell>
@@ -106,25 +111,25 @@ const Home = () => {
               <TableSortLabel 
               direction='desc'
               active={true}
-             onClick={()=>handleSort("LastModified")}> <StyledTableCell align="center">Last Modified</StyledTableCell>.</TableSortLabel>
+             onClick={()=>handleSort("LastModified")}> <StyledTableCell align="center">Last Modified</StyledTableCell></TableSortLabel>
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.filter(user =>user.name.toLowerCase().includes(search.toLowerCase()))
+            {Requirements.filter(user =>user.title.toLowerCase().includes(search.toLowerCase()))
             .map((user) => (
                 <StyledTableRow key={user.id}>
                   <StyledTableCell component="th" scope="row">
-                    {user.name} <br/> {user.No}
+                    {user.title} <br/> {user.No}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{user.TotalPositions}</StyledTableCell>
+                  <StyledTableCell align="center">{user.vacancies}</StyledTableCell>
                   <StyledTableCell align="center">
-                    {user.PositionsClosed}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {user.Status}
+                    {user.positions_closed}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {user.Assignedto}
+                    {user.status}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {user.select_recruiters}
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     {user.LastModified}
@@ -144,11 +149,14 @@ const Home = () => {
                 </StyledTableRow>
               ))}
           </TableBody>
+         
         </Table>
+        
         <>
-      
+        
         </>
       </TableContainer>
+      
     </div>
      </Container>
 

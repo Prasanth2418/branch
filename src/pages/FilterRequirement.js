@@ -1,7 +1,7 @@
 import React from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { useDispatch } from "react-redux";
-import { filterUser, loadUsers } from "../redux/actions";
+import { filterRequirement, loadRequirements } from "../redux/actions";
 import { Button,Menu,MenuItem, Divider } from "@mui/material";
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
@@ -9,10 +9,10 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 const Filter = () => {
   let dispatch = useDispatch();
   const handleFilter = (value) => {
-    dispatch(filterUser(value));
+    dispatch(filterRequirement(value));
   };
   const handleReset = () => {
-    dispatch(loadUsers());
+    dispatch(loadRequirements());
   };
   return (
     <>
@@ -58,11 +58,11 @@ const Filter = () => {
             More Filters
           </Button>
           <Menu {...bindMenu(popupState)}>
-            <MenuItem  onClick={() => handleFilter("Active")}><FilterListIcon />Active</MenuItem>
+            <MenuItem  onClick={() => handleFilter("Active")}><FilterListIcon /> Active</MenuItem>
             <Divider/>
-            <MenuItem  onClick={() => handleFilter("InActive")}><FilterListIcon />In Active</MenuItem>
+            <MenuItem  onClick={() => handleFilter("InActive")}><FilterListIcon />  In Active</MenuItem>
             <Divider/>
-            <MenuItem  onClick={handleReset}><FilterListIcon />All Time</MenuItem>
+            <MenuItem  onClick={handleReset}><FilterListIcon /> All Time</MenuItem>
             
           </Menu>
         </React.Fragment>
