@@ -31,7 +31,7 @@ const SiderBar = () => {
               <DoneAllOutlinedIcon sx={{color:"green"}} />
               </ListItemIcon>
               <ListItemText  onClick={()=>Navigate("/")}>
-                <Typography variant='h5'>Job Check</Typography>
+                <Typography variant='h5'>Job Application</Typography>
                 </ListItemText>
             </ListItemButton>
           </ListItem></List>
